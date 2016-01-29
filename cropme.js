@@ -28,7 +28,7 @@
     minHeight = 100;
     borderSensitivity = 8;
     return {
-      template: "<div\n	class=\"step-1\"\n	ng-show=\"checkScopeVariables() && state == 'step-1'\"\n	ng-style=\"{'width': width + 'px', 'height': height + 'px'}\">\n	<dropbox ng-class=\"dropClass\"></dropbox>\n	<div class=\"cropme-error\" ng-bind-html=\"dropError\"></div>\n	<div class=\"cropme-file-input\">\n		<input type=\"file\"/>\n		<div\n			class=\"cropme-button\"\n			ng-class=\"{deactivated: dragOver}\"\n			ng-click=\"browseFiles()\">\n				Browse picture\n		</div>\n		<div class=\"cropme-or\">or</div>\n		<div class=\"cropme-label\" ng-class=\"iconClass\">{{dropText}}</div>\n	</div>\n</div>\n<div\n	class=\"step-2\"\n	ng-show=\"state == 'step-2'\"\n	ng-style=\"{'width': width + 'px', cursor: colResizePointer}\"\n	ng-mousemove=\"mousemove($event)\"\n	ng-mouseleave=\"deselect()\">\n	<img ng-src=\"{{imgSrc}}\" ng-style=\"{'width': width + 'px'}\" ng-show=\"imgLoaded\"/>\n	<div class=\"overlay-tile\" ng-style=\"{'top': 0, 'left': 0, 'width': xCropZone + 'px', 'height': yCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': 0, 'left': xCropZone + 'px', 'width': widthCropZone + 'px', 'height': yCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': 0, 'left': xCropZone + widthCropZone + 'px', 'right': 0, 'height': yCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + 'px', 'left': xCropZone + widthCropZone + 'px', 'right': 0, 'height': heightCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + heightCropZone + 'px', 'left': xCropZone + widthCropZone + 'px', 'right': 0, 'bottom': 0}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + heightCropZone + 'px', 'left': xCropZone + 'px', 'width': widthCropZone + 'px', 'bottom': 0}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + heightCropZone + 'px', 'left': 0, 'width': xCropZone + 'px', 'bottom': 0}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + 'px', 'left': 0, 'width': xCropZone + 'px', 'height': heightCropZone + 'px'}\"></div>\n	<div class=\"overlay-border\" ng-style=\"{'top': (yCropZone - 2) + 'px', 'left': (xCropZone - 2) + 'px', 'width': (widthCropZone - 2) + 'px', 'height': (heightCropZone - 2) + 'px'}\"></div>\n</div>\n<div class=\"cropme-actions\" ng-show=\"state == 'step-2'\">\n	<button id=\"cropme-cancel\" ng-click=\"cancel($event)\">{{cancelLabel}}</button>\n	<button id=\"cropme-ok\" ng-click=\"ok($event)\">{{okLabel}}</button>\n</div>\n<canvas\n	width=\"{{destinationWidth}}\"\n	height=\"{{destinationHeight}}\"\n	ng-style=\"{'width': destinationWidth + 'px', 'height': destinationHeight + 'px'}\">\n</canvas>",
+      template: "<div\n	class=\"step-1\"\n	ng-show=\"checkScopeVariables() && state == 'step-1'\"\n	ng-style=\"{'width': width + 'px', 'height': height + 'px'}\">\n	<dropbox ng-class=\"dropClass\"></dropbox>\n	<div class=\"cropme-error\" ng-bind-html=\"dropError\"></div>\n	<div class=\"cropme-file-input\">\n		<input type=\"file\"/>\n		<div\n			class=\"cropme-button\"\n			ng-class=\"{deactivated: dragOver}\"\n			ng-click=\"browseFiles()\">{{texts.browse_picture}}</div>\n		<div class=\"cropme-or\">{{texts.or}}</div>\n		<div class=\"cropme-label\" ng-class=\"iconClass\">{{dropText}}</div>\n	</div>\n</div>\n<div\n	class=\"step-2\"\n	ng-show=\"state == 'step-2'\"\n	ng-style=\"{'width': width + 'px', cursor: colResizePointer}\"\n	ng-mousemove=\"mousemove($event)\"\n	ng-mouseleave=\"deselect()\">\n	<img ng-src=\"{{imgSrc}}\" ng-style=\"{'width': width + 'px'}\" ng-show=\"imgLoaded\"/>\n	<div class=\"overlay-tile\" ng-style=\"{'top': 0, 'left': 0, 'width': xCropZone + 'px', 'height': yCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': 0, 'left': xCropZone + 'px', 'width': widthCropZone + 'px', 'height': yCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': 0, 'left': xCropZone + widthCropZone + 'px', 'right': 0, 'height': yCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + 'px', 'left': xCropZone + widthCropZone + 'px', 'right': 0, 'height': heightCropZone + 'px'}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + heightCropZone + 'px', 'left': xCropZone + widthCropZone + 'px', 'right': 0, 'bottom': 0}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + heightCropZone + 'px', 'left': xCropZone + 'px', 'width': widthCropZone + 'px', 'bottom': 0}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + heightCropZone + 'px', 'left': 0, 'width': xCropZone + 'px', 'bottom': 0}\"></div>\n	<div class=\"overlay-tile\" ng-style=\"{'top': yCropZone + 'px', 'left': 0, 'width': xCropZone + 'px', 'height': heightCropZone + 'px'}\"></div>\n	<div class=\"overlay-border\" ng-style=\"{'top': (yCropZone - 2) + 'px', 'left': (xCropZone - 2) + 'px', 'width': (widthCropZone - 2) + 'px', 'height': (heightCropZone - 2) + 'px'}\"></div>\n</div>\n<div class=\"cropme-actions\" ng-show=\"state == 'step-2'\">\n	<button id=\"cropme-cancel\" ng-click=\"cancel($event)\">{{cancelLabel}}</button>\n	<button id=\"cropme-ok\" ng-click=\"ok($event)\">{{okLabel}}</button>\n</div>\n<canvas\n	width=\"{{destinationWidth}}\"\n	height=\"{{destinationHeight}}\"\n	ng-style=\"{'width': destinationWidth + 'px', 'height': destinationHeight + 'px'}\">\n</canvas>",
       restrict: "E",
       priority: 99,
       scope: {
@@ -44,11 +44,20 @@
         sendCropped: "@?",
         id: "@?",
         okLabel: "@?",
-        cancelLabel: "@?"
+        cancelLabel: "@?",
+        texts: "=?"
       },
       link: function(scope, element, attributes) {
         var $input, canvasEl, checkBoundsAndSendProgressEvent, checkHRatio, checkVRatio, ctx, debounce, debouncedSendImageEvent, dragIt, draggingFn, elOffset, getCropPromise, getOriginalPromise, grabbedBorder, heightWithImage, imageAreaEl, imageEl, isNearBorders, loadImage, moveBorders, moveCropZone, nearHSegment, nearVSegment, sendCropped, sendImageEvent, sendOriginal, startCropping, zoom;
-        scope.dropText = "Drop picture here";
+        scope.texts = scope.texts || {
+              browse_picture: "Browse picture",
+              or: "or",
+              drop_picture_here: "Drop picture here",
+              drop_files_here: "Drop files here",
+              drop_now: "Drop now",
+              loading_image:"Loading image..."
+            };
+        scope.dropText = scope.texts.drop_picture_here;
         scope.state = "step-1";
         draggingFn = null;
         grabbedBorder = null;
@@ -422,7 +431,7 @@
           if ($event) {
             $event.preventDefault();
           }
-          scope.dropText = "Drop files here";
+          scope.dropText = scope.texts.drop_files_here;
           scope.dropClass = "";
           scope.state = "step-1";
           delete scope.imgSrc;
@@ -476,7 +485,7 @@
           evt.preventDefault();
           return scope.$apply(function() {
             scope.dragOver = false;
-            scope.dropText = "Drop files here";
+            scope.dropText = scope.texts.drop_files_here;
             return scope.dropClass = "";
           });
         };
@@ -487,7 +496,7 @@
           return reset(evt);
         };
         dropbox = element[0];
-        scope.dropText = "Drop files here";
+        scope.dropText = scope.texts.drop_files_here;
         scope.dragOver = false;
         dropbox.addEventListener("dragenter", dragEnterLeave, false);
         dropbox.addEventListener("dragleave", dragEnterLeave, false);
@@ -498,7 +507,7 @@
           ok = evt.dataTransfer && evt.dataTransfer.types && evt.dataTransfer.types.indexOf("Files") >= 0;
           return scope.$apply(function() {
             scope.dragOver = true;
-            scope.dropText = (ok ? "Drop now" : "Only files are allowed");
+            scope.dropText = (ok ? scope.texts.drop_now :scope.texts.only_files_are_allowed);
             return scope.dropClass = (ok ? "over" : "not-available");
           });
         }), false);
@@ -512,7 +521,7 @@
               for (_i = 0, _len = files.length; _i < _len; _i++) {
                 file = files[_i];
                 if (file.type.match(/^image\//)) {
-                  scope.dropText = "Loading image...";
+                  scope.dropText = scope.texts.loading_image;
                   scope.dropClass = "loading";
                   return scope.setFiles(file);
                 }
