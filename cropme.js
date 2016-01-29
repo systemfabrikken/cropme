@@ -33,7 +33,7 @@
       priority: 99,
       scope: {
         width: "@?",
-        destinationWidth: "@",
+        destinationWidth: "@?",
         height: "@?",
         destinationHeight: "@?",
         iconClass: "@?",
@@ -66,8 +66,8 @@
         startCropping = function(imageWidth, imageHeight) {
           zoom = scope.width / imageWidth;
           heightWithImage = imageHeight * zoom;
-          scope.widthCropZone = Math.round(scope.destinationWidth * zoom);
-          scope.heightCropZone = Math.round((scope.destinationHeight || minHeight) * zoom);
+          scope.widthCropZone = Math.round(scope.destinationWidth * zoom) || scope.width * 0.8;
+          scope.heightCropZone = Math.round((scope.destinationHeight) * zoom) || scope.height * 0.8;
           scope.xCropZone = Math.round((scope.width - scope.widthCropZone) / 2);
           return scope.yCropZone = Math.round((scope.height - scope.heightCropZone) / 2);
         };
@@ -302,7 +302,11 @@
           var deferred;
           deferred = $q.defer();
           if (sendCropped()) {
-            ctx.drawImage(imageEl, scope.xCropZone / zoom, scope.yCropZone / zoom, scope.croppedWidth, scope.croppedHeight, 0, 0, scope.destinationWidth, scope.destinationHeight);
+            var destinationWidth = scope.destinationWidth || scope.croppedWidth;
+            var detinationHeight = scope.destinationHeight || scope.croppedHeight;
+            canvasEl.width=destinationWidth;
+            canvasEl.height=detinationHeight;
+            ctx.drawImage(imageEl, scope.xCropZone / zoom, scope.yCropZone / zoom, scope.croppedWidth, scope.croppedHeight, 0, 0, destinationWidth, detinationHeight);
             canvasToBlob(canvasEl, (function(blob) {
               return deferred.resolve(blob);
             }), "image/" + scope.type);
@@ -338,8 +342,8 @@
               y: scope.yCropZone / zoom,
               height: scope.croppedHeight,
               width: scope.croppedWidth,
-              destinationHeight: scope.destinationHeight,
-              destinationWidth: scope.destinationWidth,
+              destinationHeight: scope.destinationHeight || scope.croppedHeight,
+              destinationWidth: scope.destinationWidth || scope.croppedWidth,
               filename: scope.filename
             };
             if (blobArray[0]) {
